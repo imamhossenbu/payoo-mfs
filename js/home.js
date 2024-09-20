@@ -11,6 +11,10 @@ addEventListener('click',function(event){
         const newAmount = balance + amountAdd;
 
         document.getElementById('balance').innerText = newAmount;
+
+        document.getElementById('transaction-history').innerHTML +=`
+            <p class='text-lg font-medium text-center'>Add Balance: ${amountAdd}, Total: ${newAmount}</p> 
+        `
     }
     else{
         alert('Invalid Pin');
@@ -35,6 +39,10 @@ addEventListener('click',function(event){
         const newAmount = balance - amountOut;
 
         document.getElementById('balance').innerText = newAmount;
+
+        document.getElementById('transaction-history').innerHTML +=`
+        <p class='text-lg font-medium text-center'>Cash Out: ${amountOut}, Total: ${newAmount}</p> 
+    `
     }
     else{
         alert('Invalid Pin');
@@ -45,17 +53,46 @@ addEventListener('click',function(event){
 
 
 
-// Event listener for "Cash Out" button
-document.getElementById('cash-out').addEventListener('click', function () {
-    console.log('Cash out clicked'); // Debugging
-    document.getElementById('moneyOut').classList.remove('hidden');  // Show moneyOut section
-    document.getElementById('moneyAdd').classList.add('hidden');     // Hide moneyAdd section
-});
+// // Event listener for "Cash Out" button
+// document.getElementById('cash-out').addEventListener('click', function () {
+//     console.log('Cash out clicked'); // Debugging
+//     document.getElementById('moneyOut').classList.remove('hidden');  // Show moneyOut section
+//     document.getElementById('moneyAdd').classList.add('hidden');     // Hide moneyAdd section
+// });
 
-// Event listener for "Add Money" button
-document.getElementById('add-money').addEventListener('click', function () {
-    console.log('Add money clicked'); // Debugging
-    document.getElementById('moneyAdd').classList.remove('hidden');  // Show moneyAdd section
-    document.getElementById('moneyOut').classList.add('hidden');     // Hide moneyOut section
-});
+// // Event listener for "Add Money" button
+// document.getElementById('add-money').addEventListener('click', function () {
+//     console.log('Add money clicked'); // Debugging
+//     document.getElementById('moneyAdd').classList.remove('hidden');  // Show moneyAdd section
+//     document.getElementById('moneyOut').classList.add('hidden');     // Hide moneyOut section
+// });
+
+
+
+
+function showInputForm(id){
+    document.getElementById('moneyAdd').classList.add('hidden');
+    document.getElementById('moneyOut').classList.add('hidden');
+    document.getElementById('transaction-history').classList.add('hidden');
+
+
+    document.getElementById(id).classList.remove('hidden');
+} 
+
+
+document.getElementById('cash-out').addEventListener('click', function () {
+    showInputForm('moneyOut');
+})
+
+
+document.getElementById('add-money').addEventListener('click',function(){
+    showInputForm('moneyAdd');
+})
+
+
+document.getElementById('transaction').addEventListener('click',function(){
+    showInputForm('transaction-history');
+})
+
+
 
